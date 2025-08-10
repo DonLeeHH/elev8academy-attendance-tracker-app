@@ -3,13 +3,11 @@ import { View, Text, ActivityIndicator, Button } from "react-native";
 import { useRouter } from "expo-router";
 import { getCurrentUser, signOut } from "aws-amplify/auth";
 import { Amplify } from "aws-amplify";
-import config from "./amplifyconfiguration.json";
+import config from "../amplifyconfiguration.json";
+import handleSignOut from "@/utils/auth/handleSignOut";
 
 Amplify.configure(config);
 
-// ✅ Optional: log the actual redirect URIs in config
-console.log("Amplify redirectSignIn:", config.oauth?.redirectSignIn);
-console.log("Amplify redirectSignOut:", config.oauth?.redirectSignOut);
 
 export default function Index() {
   const router = useRouter();
@@ -32,16 +30,7 @@ export default function Index() {
     checkUser();
   }, []);
 
-   const handleSignOut = async (): Promise<void> => {
-    try {
-      console.log("Signing out...");
-      await signOut();
-      console.log("Sign out success");
-      router.replace("/auth");
-    } catch (error) {
-      console.error("Sign out error:", error);
-    }
-  };
+
 
   if (loading) {
     return (
