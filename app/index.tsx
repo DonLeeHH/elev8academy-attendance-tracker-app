@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { View, Text, ActivityIndicator, Button } from "react-native";
 import { useRouter } from "expo-router";
-import { getCurrentUser, signOut } from "aws-amplify/auth";
+import { getCurrentUser} from "aws-amplify/auth";
 import { Amplify } from "aws-amplify";
 import config from "../amplifyconfiguration.json";
 import handleSignOut from "@/utils/auth/handleSignOut";
+import { useSearchParams } from "expo-router/build/hooks";
 
 Amplify.configure(config);
 
@@ -12,24 +13,28 @@ Amplify.configure(config);
 export default function Index() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const params = useSearchParams();
 
   useEffect(() => {
     async function checkUser() {
       try {
         const user = await getCurrentUser();
         if (!user) {
-          router.replace("/auth");
+            router.replace("/auth"); 
         } else {
           setLoading(false);
-          console.log(user);
         }
       } catch {
-        router.replace("/auth");
+        router.replace(`/auth`);
       }
     }
+    const error = params.get("error") || params.get("error_description");
+    if (error) {
+      router.replace(`/auth?error=Error with sign-in`);
+    }
     checkUser();
+    
   }, []);
-
 
 
   if (loading) {
@@ -45,6 +50,8 @@ return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Welcome back!</Text>
       <Button title="Sign Out" onPress={handleSignOut} />
+      <Button title="Go to QR Code" onPress={() => router.push("/qr")} />
+
     </View>
   );
 }

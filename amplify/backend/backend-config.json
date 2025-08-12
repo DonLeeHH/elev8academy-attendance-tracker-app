@@ -1,6 +1,6 @@
 {
   "auth": {
-    "elev8c02a045a": {
+    "elev898a41f87": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -15,8 +15,12 @@
         "signupAttributes": [
           "EMAIL"
         ],
-        "socialProviders": [],
-        "usernameAttributes": [],
+        "socialProviders": [
+          "GOOGLE"
+        ],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
         "verificationMechanisms": [
           "EMAIL"
         ]

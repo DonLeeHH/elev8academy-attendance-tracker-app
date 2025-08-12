@@ -6,6 +6,11 @@ node_modules
 expo-env.d.ts
 # @end expo-cli
 
+
+ios
+android
+.expo
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -27,7 +32,3 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
-
-ios
-android
-.expo

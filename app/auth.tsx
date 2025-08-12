@@ -1,5 +1,6 @@
 import GoogleSignInButton from "@/components/buttons/GoogleSignInButton";
 import handleSignIn from "@/utils/auth/handleSignIn";
+import { useSearchParams } from "expo-router/build/hooks";
 import React from "react";
 import { View, Text, Button, Image, StyleSheet, SafeAreaView, Dimensions} from "react-native";
 
@@ -10,6 +11,9 @@ const { width } = Dimensions.get("window");
 const imageWidth = Math.min(width * 0.8, 350);
 
 export default function AuthScreen() {
+  const params = useSearchParams();
+  const error = params.get("error")
+  console.log(error);
   
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -20,6 +24,7 @@ export default function AuthScreen() {
             style={[styles.responsiveImage, { width: imageWidth, height: imageWidth }]}
             resizeMode="contain"
           />
+          {error && <Text style={{ color: "red", fontWeight: "bold", marginBottom: 20 }}>{decodeURIComponent(error)}</Text>}
         <View style={styles.buttonContainer}>
           <GoogleSignInButton
             onPress={handleSignIn}

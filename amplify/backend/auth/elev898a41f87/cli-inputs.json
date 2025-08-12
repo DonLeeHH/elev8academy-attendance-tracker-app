@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "elev8c02a045a_identitypool_c02a045a",
+    "identityPoolName": "elev898a41f87_identitypool_98a41f87",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "elev8c02a045a",
-    "userPoolName": "elev8c02a045a_userpool_c02a045a",
+    "resourceNameTruncated": "elev898a41f87",
+    "userPoolName": "elev898a41f87_userpool_98a41f87",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,16 +31,22 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "elev8cc02a045a_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "elev8998a41f87_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "c02a045a",
-    "resourceName": "elev8c02a045a",
+    "sharedId": "98a41f87",
+    "resourceName": "elev898a41f87",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "defaultSocial",
     "hostedUI": true,
-    "hostedUIDomainName": "elev8c02a045a-c02a045a",
-    "authProvidersUserPool": [],
-    "hostedUIProviderMeta": "[]",
+    "usernameAttributes": [
+      "email"
+    ],
+    "triggers": {},
+    "hostedUIDomainName": "elev8academy",
+    "authProvidersUserPool": [
+      "Google"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
@@ -59,6 +65,10 @@
     },
     "breakCircularDependency": true,
     "dependsOn": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"myapp://\",\"exp://192.168.1.149:8081/\",\"https://localhost:8081/\"],\"LogoutURLs\":[\"myapp://\",\"exp://192.168.1.149:8081/\",\"https://localhost:8081/\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"elev8://\",\"http://localhost:8081/\"],\"LogoutURLs\":[\"elev8://\",\"http://localhost:8081/\"]}",
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": []
   }
 }
