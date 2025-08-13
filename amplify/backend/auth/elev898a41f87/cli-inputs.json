@@ -37,7 +37,7 @@
       "email_verified"
     ],
     "userpoolClientLambdaRole": "elev8998a41f87_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": true,
+    "userpoolClientSetAttributes": false,
     "sharedId": "98a41f87",
     "resourceName": "elev898a41f87",
     "authSelections": "userPoolOnly",
@@ -58,7 +58,7 @@
     "authProvidersUserPool": [
       "Google"
     ],
-    "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\",\"name\":\"name\"}}]",
     "userPoolGroupList": [
       "admins",
       "tutors",
@@ -83,7 +83,7 @@
     "dependsOn": [
       {
         "category": "function",
-        "resourceName": "elev898a41f87PreSignup",
+        "resourceName": "elev898a41f87PostConfirmation",
         "triggerProvider": "Cognito",
         "attributes": [
           "Arn",
@@ -92,7 +92,7 @@
       },
       {
         "category": "function",
-        "resourceName": "elev898a41f87PostConfirmation",
+        "resourceName": "elev898a41f87PreSignup",
         "triggerProvider": "Cognito",
         "attributes": [
           "Arn",

@@ -9,7 +9,7 @@
             "Name"
           ],
           "category": "function",
-          "resourceName": "elev898a41f87PreSignup",
+          "resourceName": "elev898a41f87PostConfirmation",
           "triggerProvider": "Cognito"
         },
         {
@@ -18,7 +18,7 @@
             "Name"
           ],
           "category": "function",
-          "resourceName": "elev898a41f87PostConfirmation",
+          "resourceName": "elev898a41f87PreSignup",
           "triggerProvider": "Cognito"
         }
       ],
