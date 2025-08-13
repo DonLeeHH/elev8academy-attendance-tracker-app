@@ -9,11 +9,28 @@
       "UnauthRoleName": "amplify-elev8-dev-c342c-unauthRole",
       "StackName": "amplify-elev8-dev-c342c",
       "StackId": "arn:aws:cloudformation:ap-southeast-1:820242918147:stack/amplify-elev8-dev-c342c/fd3c53d0-7553-11f0-a9b2-069bde8db9c5",
-      "AmplifyAppId": "dzxdsezagypte"
+      "AmplifyAppId": "dzxdsezagypte",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-elev8-dev-c342c-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
-        "elev898a41f87": {}
+        "elev898a41f87": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "elev898a41f87PreSignup": {
+          "DOMAINALLOWLIST": "'donleehh420@gmail.com'",
+          "deploymentBucketName": "amplify-elev8-dev-c342c-deployment",
+          "s3Key": "amplify-builds/elev898a41f87PreSignup-634c444c366b38434a44-build.zip"
+        },
+        "elev898a41f87PostConfirmation": {
+          "GROUP": "",
+          "deploymentBucketName": "amplify-elev8-dev-c342c-deployment",
+          "s3Key": "amplify-builds/elev898a41f87PostConfirmation-6171496c467276664c49-build.zip"
+        }
+      },
+      "storage": {
+        "dynamoDBelev8academy": {}
       }
     }
   }

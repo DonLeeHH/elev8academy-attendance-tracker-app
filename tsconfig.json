@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "amplify/backend/function/elev898a41f87PostConfirmation/src/post-auth.js"  ]
 }

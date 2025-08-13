@@ -1,8 +1,6 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "elev898a41f87_identitypool_98a41f87",
-    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "elev898a41f87",
     "userPoolName": "elev898a41f87_userpool_98a41f87",
     "autoVerifiedAttributes": [
@@ -26,28 +24,46 @@
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
+      "given_name",
+      "name",
+      "phone_number",
       "email"
     ],
     "userpoolClientReadAttributes": [
-      "email"
+      "email",
+      "given_name",
+      "name",
+      "phone_number",
+      "email_verified"
     ],
     "userpoolClientLambdaRole": "elev8998a41f87_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
+    "userpoolClientSetAttributes": true,
     "sharedId": "98a41f87",
     "resourceName": "elev898a41f87",
-    "authSelections": "identityPoolAndUserPool",
-    "useDefault": "defaultSocial",
+    "authSelections": "userPoolOnly",
+    "useDefault": "manual",
     "hostedUI": true,
     "usernameAttributes": [
       "email"
     ],
-    "triggers": {},
+    "triggers": {
+      "PostConfirmation": [
+        "add-to-group"
+      ],
+      "PreSignup": [
+        "email-filter-allowlist"
+      ]
+    },
     "hostedUIDomainName": "elev8academy",
     "authProvidersUserPool": [
       "Google"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
-    "userPoolGroupList": [],
+    "userPoolGroupList": [
+      "admins",
+      "tutors",
+      "students"
+    ],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
     "useEnabledMfas": true,
@@ -64,11 +80,36 @@
       ]
     },
     "breakCircularDependency": true,
-    "dependsOn": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"elev8://\",\"http://localhost:8081/\"],\"LogoutURLs\":[\"elev8://\",\"http://localhost:8081/\"]}",
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "elev898a41f87PreSignup",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      },
+      {
+        "category": "function",
+        "resourceName": "elev898a41f87PostConfirmation",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      }
+    ],
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "permissions": []
+    "permissions": [
+      "{\n  \"policyName\": \"AddToGroupCognito\",\n  \"trigger\": \"PostConfirmation\",\n  \"effect\": \"Allow\",\n  \"actions\": [\n    \"cognito-idp:AdminAddUserToGroup\",\n    \"cognito-idp:GetGroup\",\n    \"cognito-idp:CreateGroup\"\n  ],\n  \"resource\": {\n    \"paramType\": \"!GetAtt\",\n    \"keys\": [\n      \"UserPool\",\n      \"Arn\"\n    ]\n  }\n}"
+    ],
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"elev898a41f87PostConfirmation\"\n  },\n  {\n    \"triggerType\": \"PreSignUp\",\n    \"lambdaFunctionName\": \"elev898a41f87PreSignup\"\n  }\n]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"elev8://\",\"http://localhost:8081/\"],\"LogoutURLs\":[\"elev8://\",\"http://localhost:8081/\"]}",
+    "authProviders": []
   }
 }

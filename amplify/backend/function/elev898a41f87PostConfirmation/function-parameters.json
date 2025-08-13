@@ -1,0 +1,23 @@
+{
+  "trigger": true,
+  "modules": [
+    "add-to-group"
+  ],
+  "parentResource": "elev898a41f87",
+  "functionName": "elev898a41f87PostConfirmation",
+  "resourceName": "elev898a41f87PostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "/snapshot/amplify-cli/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "elev898a41f87PostConfirmation",
+  "skipEdit": true,
+  "permissions": {
+    "storage": {
+      "dynamoDBelev8academy": [
+        "read"
+      ]
+    }
+  }
+}

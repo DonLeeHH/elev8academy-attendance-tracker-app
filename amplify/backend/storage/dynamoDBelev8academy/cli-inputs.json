@@ -1,0 +1,10 @@
+{
+  "resourceName": "dynamoDBelev8academy",
+  "tableName": "UserTable",
+  "partitionKey": {
+    "fieldName": "email",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
