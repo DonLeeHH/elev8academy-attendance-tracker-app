@@ -1,6 +1,8 @@
 {
   "version": "1",
   "cognitoConfig": {
+    "identityPoolName": "elev898a41f87_identitypool_99a073fe",
+    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "elev898a41f87",
     "userPoolName": "elev898a41f87_userpool_98a41f87",
     "autoVerifiedAttributes": [
@@ -40,7 +42,7 @@
     "userpoolClientSetAttributes": false,
     "sharedId": "98a41f87",
     "resourceName": "elev898a41f87",
-    "authSelections": "userPoolOnly",
+    "authSelections": "identityPoolAndUserPool",
     "useDefault": "manual",
     "hostedUI": true,
     "usernameAttributes": [
@@ -104,11 +106,14 @@
       "Ref": "AWS::StackId"
     },
     "permissions": [
-      "{\n  \"policyName\": \"AddToGroupCognito\",\n  \"trigger\": \"PostConfirmation\",\n  \"effect\": \"Allow\",\n  \"actions\": [\n    \"cognito-idp:AdminAddUserToGroup\",\n    \"cognito-idp:GetGroup\",\n    \"cognito-idp:CreateGroup\"\n  ],\n  \"resource\": {\n    \"paramType\": \"!GetAtt\",\n    \"keys\": [\n      \"UserPool\",\n      \"Arn\"\n    ]\n  }\n}"
+      "{\"policyName\":\"AddToGroupCognito\",\"trigger\":\"PostConfirmation\",\"effect\":\"Allow\",\"actions\":[\"cognito-idp:AdminAddUserToGroup\",\"cognito-idp:GetGroup\",\"cognito-idp:CreateGroup\"],\"resource\":{\"paramType\":\"!GetAtt\",\"keys\":[\"UserPool\",\"Arn\"]}}"
     ],
     "userPoolGroups": false,
     "adminQueries": false,
-    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"elev898a41f87PostConfirmation\"\n  },\n  {\n    \"triggerType\": \"PreSignUp\",\n    \"lambdaFunctionName\": \"elev898a41f87PreSignup\"\n  }\n]",
+    "authTriggerConnections": [
+      "{\"triggerType\":\"PostConfirmation\",\"lambdaFunctionName\":\"elev898a41f87PostConfirmation\"}",
+      "{\"triggerType\":\"PreSignUp\",\"lambdaFunctionName\":\"elev898a41f87PreSignup\"}"
+    ],
     "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"elev8://\",\"http://localhost:8081/\"],\"LogoutURLs\":[\"elev8://\",\"http://localhost:8081/\"]}",
     "authProviders": []
   }

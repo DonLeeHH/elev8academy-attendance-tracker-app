@@ -1,4 +1,5 @@
-import React from 'react';
+import { generateSession } from '@/utils/session/generateSession';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
@@ -6,7 +7,7 @@ export default function QRCodeScreen() {
   const sessionId = 'f2a8e3c1d9'; // Unique session ID for this class
   const qrValue = `https://yourapp.com/attendance/${sessionId}`;
 
-  return (
+    return (
     <View style={styles.container}>
       <Text style={styles.title}>Scan to Mark Attendance</Text>
       <QRCode

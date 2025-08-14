@@ -1,4 +1,41 @@
 {
+  "api": {
+    "elev8": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "elev8GenerateSession"
+        },
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "elev898a41f87"
+        },
+        {
+          "attributes": [
+            "adminsGroupRole"
+          ],
+          "category": "auth",
+          "resourceName": "userPoolGroups"
+        },
+        {
+          "attributes": [
+            "tutorsGroupRole"
+          ],
+          "category": "auth",
+          "resourceName": "userPoolGroups"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "elev898a41f87": {
       "customAuth": false,
@@ -53,7 +90,8 @@
           "attributes": [
             "UserPoolId",
             "AppClientIDWeb",
-            "AppClientID"
+            "AppClientID",
+            "IdentityPoolId"
           ],
           "category": "auth",
           "resourceName": "elev898a41f87"
@@ -91,6 +129,22 @@
           ],
           "category": "storage",
           "resourceName": "dynamoDBelev8academy"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "elev8GenerateSession": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "dynamoElev8Sessions"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -145,10 +199,30 @@
           "resourceName": "elev898a41f87PreSignup"
         }
       ]
+    },
+    "AMPLIFY_function_elev8GenerateSession_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "elev8GenerateSession"
+        }
+      ]
+    },
+    "AMPLIFY_function_elev8GenerateSession_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "elev8GenerateSession"
+        }
+      ]
     }
   },
   "storage": {
     "dynamoDBelev8academy": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
+    "dynamoElev8Sessions": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     }

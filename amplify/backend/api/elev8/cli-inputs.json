@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "paths": {
+    "/generate-session": {
+      "name": "/generate-session",
+      "lambdaFunction": "elev8GenerateSession",
+      "permissions": {
+        "groups": {
+          "admins": [
+            "create",
+            "read",
+            "update",
+            "delete"
+          ],
+          "tutors": [
+            "create",
+            "read",
+            "update",
+            "delete"
+          ]
+        },
+        "setting": "private"
+      }
+    }
+  }
+}

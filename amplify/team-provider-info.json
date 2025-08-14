@@ -10,7 +10,8 @@
       "StackName": "amplify-elev8-dev-c342c",
       "StackId": "arn:aws:cloudformation:ap-southeast-1:820242918147:stack/amplify-elev8-dev-c342c/fd3c53d0-7553-11f0-a9b2-069bde8db9c5",
       "AmplifyAppId": "dzxdsezagypte",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-elev8-dev-c342c-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-elev8-dev-c342c-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-elev8-dev-c342c-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
@@ -27,10 +28,18 @@
           "GROUP": "",
           "deploymentBucketName": "amplify-elev8-dev-c342c-deployment",
           "s3Key": "amplify-builds/elev898a41f87PostConfirmation-6171496c467276664c49-build.zip"
+        },
+        "elev8GenerateSession": {
+          "deploymentBucketName": "amplify-elev8-dev-c342c-deployment",
+          "s3Key": "amplify-builds/elev8GenerateSession-46766c794c4a7434476c-build.zip"
         }
       },
       "storage": {
-        "dynamoDBelev8academy": {}
+        "dynamoDBelev8academy": {},
+        "dynamoElev8Sessions": {}
+      },
+      "api": {
+        "elev8": {}
       }
     }
   }

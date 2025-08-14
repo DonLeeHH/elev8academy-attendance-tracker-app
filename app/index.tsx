@@ -6,6 +6,7 @@ import { Amplify } from "aws-amplify";
 import config from "../amplifyconfiguration.json";
 import handleSignOut from "@/utils/auth/handleSignOut";
 import { useSearchParams } from "expo-router/build/hooks";
+import { generateSession } from "@/utils/session/generateSession";
 
 Amplify.configure(config);
 
@@ -45,12 +46,19 @@ export default function Index() {
       </View>
     );
   }
+  async function fetchSession() {
+      const res = await generateSession({
+        level: 'Sec3',
+        subject: 'Physics',
+        tutorEmail: 'donleehh420@gmail.com'
+      });
+  }
 
 return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Welcome back!</Text>
       <Button title="Sign Out" onPress={handleSignOut} />
-      <Button title="Go to QR Code" onPress={() => router.push("/qr")} />
+      <Button title="Go to QR Code" onPress={async () => await fetchSession()} />
 
     </View>
   );

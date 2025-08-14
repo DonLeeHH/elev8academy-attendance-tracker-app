@@ -1,0 +1,14 @@
+{
+  "resourceName": "dynamoElev8Sessions",
+  "tableName": "Sessions",
+  "partitionKey": {
+    "fieldName": "class",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "classDate",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
