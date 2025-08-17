@@ -7,6 +7,7 @@ import config from "../amplifyconfiguration.json";
 import handleSignOut from "@/utils/auth/handleSignOut";
 import { useSearchParams } from "expo-router/build/hooks";
 import { generateSession } from "@/utils/session/generateSession";
+import ClassCard from "@/components/cards/ClassCard";
 
 Amplify.configure(config);
 
@@ -59,7 +60,11 @@ return (
       <Text>Welcome back!</Text>
       <Button title="Sign Out" onPress={handleSignOut} />
       <Button title="Go to QR Code" onPress={async () => await fetchSession()} />
-
+      <ClassCard 
+        level="Sec3" 
+        subject="Physics" 
+        tutorEmail="donleehh420@gmail.com" 
+      />
     </View>
   );
 }

@@ -2,9 +2,14 @@ import { generateSession } from '@/utils/session/generateSession';
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
+import { useRoute, RouteProp } from '@react-navigation/native';
 
-export default function QRCodeScreen() {
-  const sessionId = 'f2a8e3c1d9'; // Unique session ID for this class
+type QRRouteParams = {
+  sessionId?: string;
+}
+export default function AttendanceScreen() {
+  const route = useRoute<RouteProp<{params: QRRouteParams }>>();
+  const { sessionId } = route?.params ?? {};
   const qrValue = `https://yourapp.com/attendance/${sessionId}`;
 
     return (
