@@ -1,17 +1,14 @@
 import { fetchAuthSession } from "aws-amplify/auth";
 
-export default async function getUserGroups() {
+export default async function getUserGroups(): Promise<string[]> {
   try {
-    const session = await fetchAuthSession();
-    if (session.tokens?.accessToken) {
-      const payload = session.tokens.accessToken.payload;
-      const groups = payload['cognito:groups'] || [];
-      console.log('User groups:', groups);
-      return groups;
-    }
-    return [];
-  } catch (error) {
-    console.error('Error fetching user groups:', error);
+    const { tokens } = await fetchAuthSession();
+    const groups =
+      (tokens?.idToken?.payload?.["cognito:groups"] as string[] | undefined) ?? [];
+    // console.log("User groups:", groups);
+    return groups;
+  } catch (err) {
+    console.error("Error fetching user groups:", err);
     return [];
   }
 }

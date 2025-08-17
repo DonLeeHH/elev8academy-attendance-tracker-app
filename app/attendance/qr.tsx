@@ -10,7 +10,8 @@ type QRRouteParams = {
 export default function AttendanceScreen() {
   const route = useRoute<RouteProp<{params: QRRouteParams }>>();
   const { sessionId } = route?.params ?? {};
-  const qrValue = `https://yourapp.com/attendance/${sessionId}`;
+  const qrValue = `elev8://attendance/attend?sessionId=${sessionId}`;
+  console.log("QR Value:", qrValue);
 
     return (
     <View style={styles.container}>

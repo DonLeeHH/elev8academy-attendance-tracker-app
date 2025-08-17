@@ -1,9 +1,10 @@
 import GoogleSignInButton from "@/components/buttons/GoogleSignInButton";
 import handleSignIn from "@/utils/auth/handleSignIn";
 import { useSearchParams } from "expo-router/build/hooks";
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, Button, Image, StyleSheet, SafeAreaView, Dimensions} from "react-native";
-
+import {useRouter, useLocalSearchParams, router} from "expo-router";
+import { getCurrentUser } from "aws-amplify/auth";
 
 // Get screen dimensions for responsiveness
 const { width } = Dimensions.get("window");
@@ -13,8 +14,23 @@ const imageWidth = Math.min(width * 0.8, 350);
 export default function AuthScreen() {
   const params = useSearchParams();
   const error = params.get("error")
-  console.log(error);
-  
+  // Use Async storage instead! TODO
+  const { attendSessionId } = useLocalSearchParams<{ attendSessionId?: string }>();
+  if (attendSessionId) {
+    console.log("Attend Session ID:", attendSessionId);
+  }
+  useEffect(() => {
+    (async () => {
+      try {
+        console.log("On auth page")
+        await getCurrentUser(); // throws if not signed in
+        router.replace("/");
+      } catch {
+        // not signed in; stay on auth
+      }
+    })();
+  }, [router]);
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -27,7 +43,7 @@ export default function AuthScreen() {
           {error && <Text style={{ color: "red", fontWeight: "bold", marginBottom: 20 }}>{decodeURIComponent(error)}</Text>}
         <View style={styles.buttonContainer}>
           <GoogleSignInButton
-            onPress={handleSignIn}
+            onPress={() => handleSignIn(attendSessionId)}
           />
         </View>
       </View>

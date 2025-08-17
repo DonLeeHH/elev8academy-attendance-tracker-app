@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { generateSession } from "@/utils/session/generateSession";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 
 
 type ClassCardProps = {
@@ -11,7 +11,6 @@ type ClassCardProps = {
 };
 
 export default function ClassCard({ level, subject, tutorEmail }: ClassCardProps) {
-  const route = useRouter();
   async function handleGenerate() {
     try {
         const generatedQR = await generateSession({ level, subject, tutorEmail });
@@ -25,11 +24,11 @@ export default function ClassCard({ level, subject, tutorEmail }: ClassCardProps
         ) {
         sessionId = (generatedQR as { sessionId: string }).sessionId;
         }
-        route.push(`/qr?sessionId=${sessionId}`);
+            router.push({ pathname: "/attendance/qr", params: { sessionId } });
         } catch (error) {
         console.error("Error generating session:", error);
         }
-    }
+    }   
 
   return (
     <View style={styles.card}>
