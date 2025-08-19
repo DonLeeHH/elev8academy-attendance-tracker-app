@@ -3,7 +3,7 @@ import handleSignIn from "@/utils/auth/handleSignIn";
 import { useSearchParams } from "expo-router/build/hooks";
 import React, { useEffect } from "react";
 import { View, Text, Button, Image, StyleSheet, SafeAreaView, Dimensions} from "react-native";
-import {useRouter, useLocalSearchParams, router} from "expo-router";
+import {router} from "expo-router";
 import { getCurrentUser } from "aws-amplify/auth";
 
 // Get screen dimensions for responsiveness
@@ -15,10 +15,6 @@ export default function AuthScreen() {
   const params = useSearchParams();
   const error = params.get("error")
   // Use Async storage instead! TODO
-  const { attendSessionId } = useLocalSearchParams<{ attendSessionId?: string }>();
-  if (attendSessionId) {
-    console.log("Attend Session ID:", attendSessionId);
-  }
   useEffect(() => {
     (async () => {
       try {
@@ -43,7 +39,7 @@ export default function AuthScreen() {
           {error && <Text style={{ color: "red", fontWeight: "bold", marginBottom: 20 }}>{decodeURIComponent(error)}</Text>}
         <View style={styles.buttonContainer}>
           <GoogleSignInButton
-            onPress={() => handleSignIn(attendSessionId)}
+            onPress={() => handleSignIn()}
           />
         </View>
       </View>

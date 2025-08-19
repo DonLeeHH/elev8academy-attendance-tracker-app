@@ -2,6 +2,7 @@ import { getCurrentUser } from "aws-amplify/auth";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, View, Text } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function AttendScreen() {
     const router = useRouter();
@@ -11,11 +12,17 @@ export default function AttendScreen() {
     useEffect(() => {
         (async() => {
             try { 
-                await getCurrentUser(); // thros if not signed in
+                await getCurrentUser(); // throws if not signed in
                 setChecking(false);
+                // Check if user is student
             } catch { 
                 // not signed in -> send to /auth with a "next" param so we can come back
-                router.replace(`/auth?attendSessionId=${sessionId}`);
+                try {
+                    await AsyncStorage.setItem('attendSessionId', sessionId);
+                } catch {
+                    console.error("Error saving session ID");
+                }
+                router.replace(`/auth`);
             }
         })();
     }, [router, sessionId]);

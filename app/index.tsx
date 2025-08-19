@@ -9,6 +9,7 @@ import { useSearchParams } from "expo-router/build/hooks";
 import { generateSession } from "@/utils/session/generateSession";
 import ClassCard from "@/components/cards/ClassCard";
 import getUserGroups from "@/utils/auth/getUserGroups";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 Amplify.configure(config);
 
@@ -17,7 +18,7 @@ export default function Index() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const params = useSearchParams();
-  const { attendSessionId } = useLocalSearchParams<{ attendSessionId?: string }>();
+
   const { errorMessage } = useLocalSearchParams<{ errorMessage?: string }>();
 
 
@@ -30,13 +31,19 @@ export default function Index() {
         } else {
           setLoading(false);
           const groups = await getUserGroups();
-          if (attendSessionId) {
-            if (groups.includes('admins')) { // Change to 'admin' to test for now
+          try {
+            const attendSessionId = await AsyncStorage.getItem('attendSessionId');
+          
+            if (attendSessionId !== null) {
+              // value previously stored
+              console.log("Routing to attendance screen with session ID:", attendSessionId);
+              await AsyncStorage.removeItem('attendSessionId');
               router.push(`/attendance/attend?sessionId=${attendSessionId}`);
             } else {
-              console.error("Unauthorized access: User is not a student");
-              router.replace(`/?errorMessage=Unauthorized access`)
+              console.log("No attend session ID found, staying on index.");
             }
+          } catch (e) {
+            // error reading value
           }
         }
       } catch {
