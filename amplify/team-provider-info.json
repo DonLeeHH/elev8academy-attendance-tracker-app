@@ -29,9 +29,9 @@
           "deploymentBucketName": "amplify-elev8-dev-c342c-deployment",
           "s3Key": "amplify-builds/elev898a41f87PostConfirmation-6171496c467276664c49-build.zip"
         },
-        "elev8GenerateSession": {
+        "elev8SessionManagement": {
           "deploymentBucketName": "amplify-elev8-dev-c342c-deployment",
-          "s3Key": "amplify-builds/elev8GenerateSession-46766c794c4a7434476c-build.zip"
+          "s3Key": "amplify-builds/elev8SessionManagement-4d773878503554396430-build.zip"
         }
       },
       "storage": {

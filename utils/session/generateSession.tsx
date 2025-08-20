@@ -11,10 +11,6 @@ interface GenerateSessionPayload {
   tutorEmail?: string; // optional, will be filled from Cognito
 }
 
-interface GenerateSessionResponse {
-  sessionId: string;
-  expiresAt?: string; // optional if your Lambda also returns expiry
-}
 
 export async function generateSession(payload: GenerateSessionPayload){
   try {
@@ -31,7 +27,7 @@ export async function generateSession(payload: GenerateSessionPayload){
 
     const restOperation = post({
       apiName: "elev8",       // your Amplify API name
-      path: "/generate-session",   // route in API Gateway
+      path: "/session-management/session",   // route in API Gateway
       options: {
         body: fullPayload,
       },

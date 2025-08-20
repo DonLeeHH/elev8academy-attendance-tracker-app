@@ -8,7 +8,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "elev8GenerateSession"
+          "resourceName": "elev8SessionManagement"
         },
         {
           "attributes": [
@@ -134,7 +134,7 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "elev8GenerateSession": {
+    "elev8SessionManagement": {
       "build": true,
       "dependsOn": [
         {
@@ -200,19 +200,19 @@
         }
       ]
     },
-    "AMPLIFY_function_elev8GenerateSession_deploymentBucketName": {
+    "AMPLIFY_function_elev8SessionManagement_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "elev8GenerateSession"
+          "resourceName": "elev8SessionManagement"
         }
       ]
     },
-    "AMPLIFY_function_elev8GenerateSession_s3Key": {
+    "AMPLIFY_function_elev8SessionManagement_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "elev8GenerateSession"
+          "resourceName": "elev8SessionManagement"
         }
       ]
     }

@@ -67,13 +67,6 @@ export default function Index() {
       </View>
     );
   }
-  async function fetchSession() {
-      const res = await generateSession({
-        level: 'Sec3',
-        subject: 'Physics',
-        tutorEmail: 'donleehh420@gmail.com'
-      });
-  }
 
 return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>

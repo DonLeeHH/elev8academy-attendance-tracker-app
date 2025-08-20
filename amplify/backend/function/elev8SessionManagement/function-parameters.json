@@ -1,11 +1,13 @@
 {
-  "lambdaLayers": [],
   "permissions": {
     "storage": {
       "dynamoElev8Sessions": [
         "create",
-        "read"
+        "read",
+        "update",
+        "delete"
       ]
     }
-  }
+  },
+  "lambdaLayers": []
 }

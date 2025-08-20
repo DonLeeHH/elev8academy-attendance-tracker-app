@@ -1,9 +1,9 @@
 {
   "version": 1,
   "paths": {
-    "/generate-session": {
-      "name": "/generate-session",
-      "lambdaFunction": "elev8GenerateSession",
+    "/session-management/session": {
+      "name": "/session-management/session",
+      "lambdaFunction": "elev8SessionManagement",
       "permissions": {
         "groups": {
           "admins": [

@@ -17,14 +17,19 @@ export default function ClassCard({ level, subject, tutorEmail }: ClassCardProps
         console.log(`Session generated for ${level} ${subject}`);
 
         let sessionId: string | undefined;
+        let cls: string | undefined;
+        let classDate: string | undefined;
         if (
             typeof generatedQR === "object" &&
             generatedQR !== null &&
             "sessionId" in generatedQR
         ) {
         sessionId = (generatedQR as { sessionId: string }).sessionId;
+        cls = (generatedQR as { pk: string }).pk;
+        classDate = (generatedQR as { sk: string }).sk;
+
         }
-            router.push({ pathname: "/attendance/qr", params: { sessionId } });
+            router.push({ pathname: "/attendance/qr", params: { cls, classDate, sessionId } });
         } catch (error) {
         console.error("Error generating session:", error);
         }

@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda Function resource stack creation using Amplify CLI",
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"14.0.0\",\"stackType\":\"function-Lambda\",\"metadata\":{\"whyContinueWithGen1\":\"\"}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -59,12 +59,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "elev8GenerateSession",
+            "elev8SessionManagement",
             {
               "Fn::Join": [
                 "",
                 [
-                  "elev8GenerateSession",
+                  "elev8SessionManagement",
                   "-",
                   {
                     "Ref": "env"
@@ -110,12 +110,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "elev8LambdaRoleeb6ffd37",
+            "elev8LambdaRole064ca3a9",
             {
               "Fn::Join": [
                 "",
                 [
-                  "elev8LambdaRoleeb6ffd37",
+                  "elev8LambdaRole064ca3a9",
                   "-",
                   {
                     "Ref": "env"
@@ -214,7 +214,12 @@
                 "dynamodb:Describe*",
                 "dynamodb:Scan",
                 "dynamodb:Query",
-                "dynamodb:PartiQLSelect"
+                "dynamodb:PartiQLSelect",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:PartiQLUpdate",
+                "dynamodb:Delete*",
+                "dynamodb:PartiQLDelete"
               ],
               "Resource": [
                 {
